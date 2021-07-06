@@ -3,14 +3,36 @@
     padding: 0;
 }
 
-.container {
+.app-container {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgb(34, 34, 34);
 }
+.user-form {
+    margin-top: 30px !important;
+    max-width: 800px;
+    margin: auto;
+}
 
+.home {
+    min-height: 100vh;
+}
+.home-columns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pointer {
+    cursor: pointer;
+}
+.share-game {
+    position: absolute;
+    width: 500px;
+    bottom: 0;
+    left: 0;
+}
 .board-container {
     width: 600px;
     height: 600px;

@@ -1,39 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './App.css'
-import { gameSubject, initGame, resetGame } from './Game'
-import Board from './Board'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Home from './Home'
+import UserForm from './UserForm'
+import GameApp from './GameApp'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from './firebase'
 
-function App() {
-  const [board, setBoard] = useState([])
-  const [isGameOver, setIsGameOver] = useState()
-  const [result, setResult] = useState()
-  const [turn, setTurn] = useState()
-  useEffect(() => {
-    initGame()
-    const subscribe = gameSubject.subscribe((game) => {
-      setBoard(game.board)
-      setIsGameOver(game.isGameOver)
-      setResult(game.result)
-      setTurn(game.turn)
-    })
-    return () => subscribe.unsubscribe()
-  }, [])
-  return (
-    <div className="container">
-      {isGameOver && (
-        <h2 className="vertical-text">
-          GAME OVER
-          <button onClick={resetGame}>
-            <span className="vertical-text"> NEW GAME</span>
-          </button>
-        </h2>
-      )}
-      <div className="board-container">
-        <Board board={board} turn={turn} />
-      </div>
-      {result && <p className="vertical-text">{result}</p>}
-    </div>
-  )
+export default function App() {
+    const [user, loading, error] = useAuthState(auth)
+
+    if (loading) {
+        return 'loading ...'
+    }
+    if (error) {
+        return 'There was an error'
+    }
+    if (!user) {
+        return <UserForm />
+    }
+
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <Home></Home>
+                </Route>
+                <Route path="/game/:id">
+                    <GameApp />
+                </Route>
+            </Switch>
+        </Router>
+    )
 }
-
-export default App
