@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(34, 34, 34);
+    min-height: 100vh;
+    
+}
+
+.board-container {
+    width: 600px;
+    height: 600px;
+
+}
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+
+}
+
+.square {
+    width: 12.5%;
+    height: 12.5%;
+}

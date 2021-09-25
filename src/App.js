@@ -14,8 +14,10 @@ export default function App() {
     return () => subscribe.unsubscribe()
   }, [])
   return (
-    <div>
-      <Board board={board} />
+    <div className='container'>
+      <div className='board-container'>
+        <Board board={board} />
+      </div>
     </div>
   )
 }
