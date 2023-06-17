@@ -31,11 +31,15 @@ export default function Home() {
         history.push(`/game/${game.gameId}`)
     }
 
+    function startLocalGame() {
+        history.push('/game/local')
+    }
+
     return (
         <>
             <div className="columns home">
                 <div className="column has-background-primary home-columns">
-                    <button className="button is-link">
+                    <button className="button is-link" onClick={startLocalGame}>
                         Play Locally
                     </button>
                 </div>
